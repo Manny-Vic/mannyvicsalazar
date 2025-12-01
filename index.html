@@ -77,34 +77,34 @@ header nav a.active, header nav a:hover { color:#b74b4b; transform:scale(1.05); 
 /* Your existing CSS here */
 
 /* New CSS for Education section cards and flexible height */
- .card img { 
-      width: 100%;  /* Ensure it spans the entire width */
-      height: 200px; /* Set a consistent height for the image */
-      object-fit: cover;  /* This will ensure images cover the area of the container */
-      object-position: center;  /* Keeps the image centered within the container */
-    }
-
-    .card { 
-      border: 1px solid transparent; 
-      transition: all 0.3s ease; 
-      border-radius: 12px; 
-      overflow: hidden; 
-      background: #1c1c1c; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: space-between; 
-      height: auto;  
+ .card {
+      border:1px solid transparent;
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: auto;
       min-height: 300px; /* Ensure all cards have a minimum height */
     }
 
-    .card-overlay { 
+    .card img {
+      width: 100%; /* Ensure it spans the entire width */
+      height: 200px; /* Set a consistent height for the image */
+      object-fit: cover; /* Ensures images cover the area of the container */
+      object-position: center; /* Keeps the image centered within the container */
+    }
+
+    .card-overlay {
       padding: 1.5rem;  /* Increase padding for text */
       flex-grow: 1;  /* Allow the overlay section to take up remaining space */
     }
 
-    .card:hover { 
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
-      transform: translateY(-5px) scale(1.02); 
+    .card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transform: translateY(-5px) scale(1.02);
     }
 
     .card-overlay h3 {
@@ -119,6 +119,7 @@ header nav a.active, header nav a:hover { color:#b74b4b; transform:scale(1.05); 
       font-size: 1rem;
       line-height: 1.4; 
     }
+    
 </style>
 
 
