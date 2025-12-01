@@ -40,7 +40,7 @@
     header nav a.active, header nav a:hover { color:#b74b4b; transform:scale(1.05); }
 
     .card { border:1px solid transparent; transition:all 0.3s ease; border-radius:12px; overflow:hidden; background:#1c1c1c; display:flex; flex-direction:column; min-height:350px; }
-    .card img { width:100%; height:60%; object-fit:cover; object-position:center; }
+    .card img { width:100%; height:200px; object-fit:cover; object-position:center; }
     .card-overlay { padding:1.5rem; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between; }
     .card:hover { box-shadow:0 10px 25px rgba(0,0,0,0.5); transform:translateY(-5px) scale(1.02); }
 
@@ -70,53 +70,6 @@
       41%, 60% { content: "Copywriter"; }
       61%, 80% { content: "Youtuber"; }
       81%, 100% { content: "Video Editor"; }
-    }
-
-    /* Education Section Card */
-    .card {
-      border: 1px solid transparent;
-      transition: all 0.3s ease;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #1c1c1c;
-      display: flex;
-      flex-direction: column;
-      min-height: 350px;
-    }
-
-    .card img {
-      width: 100%;
-      height: 60%; /* Adjusting to cover only the top part of the card */
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .card-overlay {
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      transform: translateY(-5px) scale(1.02);
-    }
-
-    /* Subheading Styling */
-    .card-overlay p {
-      font-size: 0.9rem;
-      color: white;
-      margin-top: 0.5rem;
-    }
-
-    /* Text Styling */
-    .card-overlay h3 {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 0.5rem;
     }
 
     /* Achievement Timeline */
@@ -347,39 +300,32 @@
 
     <!-- Education -->
     <section class="grid grid-cols-2 grid-rows-2 gap-6 pt-24 px-8" id="education">
-      <!-- BS Computer Science Card -->
-      <div class="card max-h-80">
-        <img src="uc_logo_green_ext_h150.png" class="w-full h-60 object-cover opacity-60">
-        <div class="card-overlay p-6">
-          <h3 class="text-white font-bold text-xl">BS Computer Science</h3>
-          <p class="text-white text-sm mt-2">University of the Cordilleras, 2025 - Ongoing</p>
+      <div class="card h-60">
+        <img src="uc_logo_green_ext_h150.png" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">BS Computer Science</h3>
+          <p>University of the Cordilleras, 2025 - Ongoing</p>
         </div>
       </div>
-
-      <!-- Senior High School Card -->
-      <div class="card max-h-80">
-        <img src="images.png" class="w-full h-60 object-cover opacity-60">
-        <div class="card-overlay p-6">
-          <h3 class="text-white font-bold text-xl">Senior High School</h3>
-          <p class="text-white text-sm mt-2">PHINMA University of Pangasinan, 2023-2025</p>
+      <div class="card h-60">
+        <img src="images.png" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">Senior High School</h3>
+          <p>PHINMA University of Pangasinan, 2023-2025</p>
         </div>
       </div>
-
-      <!-- High School Card -->
-      <div class="card max-h-80">
-        <img src="PSAT.jpg" class="w-full h-60 object-cover opacity-60">
-        <div class="card-overlay p-6">
-          <h3 class="text-white font-bold text-xl">High School</h3>
-          <p class="text-white text-sm mt-2">Pangasinan School of Arts and Trades, 2019-2022</p>
+      <div class="card h-60">
+        <img src="PSAT.jpg" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">High School</h3>
+          <p>Pangasinan School of Arts and Trades, 2019-2022</p>
         </div>
       </div>
-
-      <!-- Grade School Card -->
-      <div class="card max-h-80">
-        <img src="biec.jpg" class="w-full h-60 object-cover opacity-60">
-        <div class="card-overlay p-6">
-          <h3 class="text-white font-bold text-xl">Grade School</h3>
-          <p class="text-white text-sm mt-2">Biec Elementary School, 2012-2018</p>
+      <div class="card h-60">
+        <img src="biec.jpg" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">Grade School</h3>
+          <p>Biec Elementary School, 2012-2018</p>
         </div>
       </div>
     </section>
@@ -447,7 +393,93 @@
         </div>
       </div>
     </section>
-  </div>
-</body>
-</html>
 
+    <!-- Batch -->
+    <section class="flex flex-col justify-center items-center" id="batch">
+      <div class="batch-card relative w-3/4 h-3/4 cursor-pointer">
+        <img src="batch10.png" class="w-full h-full object-cover rounded-lg shadow-lg batch-image">
+        <div class="absolute inset-0 flex flex-col justify-end items-start p-6 bg-black bg-opacity-40 rounded-lg">
+          <h2 class="text-white text-3xl mb-2">My Batch Mates</h2>
+          <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="nav-buttons">
+    <div id="backBtn" class="nav-btn hidden">Previous</div>
+    <div id="nextBtn" class="nav-btn">Next</div>
+  </div>
+
+  <!-- Batch Zoom Overlay -->
+  <div class="batch-zoom-overlay" id="batchZoom">
+    <button class="close-btn" id="closeZoom">&times;</button>
+    <img src="" id="zoomImg">
+  </div>
+
+  <!-- Thank You Modal -->
+  <div id="thankModal">
+    <div class="modal-card">
+      <h2 class="text-2xl font-bold">Thank you for viewing my portfolio!</h2>
+      <p class="mt-2">I appreciate your time and interest.</p>
+      <button id="closeThank">Back to Home</button>
+    </div>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('header nav a');
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const thankModal = document.getElementById('thankModal');
+    const closeThank = document.getElementById('closeThank');
+    let currentIndex = 0;
+
+    function showSection(index) {
+      sections.forEach((sec, i) => {
+        sec.classList.toggle('active', i === index);
+        sec.style.zIndex = i === index ? 10 : 0;
+      });
+      navLinks.forEach((link, i) => link.classList.toggle('active', i === index));
+      backBtn.style.display = index === 0 ? 'none' : 'flex';
+      nextBtn.textContent = index === sections.length - 1 ? 'Finish' : 'Next';
+      currentIndex = index;
+    }
+
+    navLinks.forEach((link, i) =>
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection(i);
+      })
+    );
+    backBtn.addEventListener('click', () => {
+      if (currentIndex > 0) showSection(currentIndex - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < sections.length - 1) showSection(currentIndex + 1);
+      else thankModal.classList.add('active');
+    });
+    closeThank.addEventListener('click', () => {
+      thankModal.classList.remove('active');
+      showSection(0);
+    });
+
+    showSection(0);
+
+    // Batchmate zoom
+    const batchCard = document.querySelector('.batch-card');
+    const batchZoom = document.getElementById('batchZoom');
+    const zoomImg = document.getElementById('zoomImg');
+    const closeZoom = document.getElementById('closeZoom');
+
+    batchCard.addEventListener('click', () => {
+      const img = batchCard.querySelector('img');
+      zoomImg.src = img.src;
+      batchZoom.classList.add('active');
+    });
+    closeZoom.addEventListener('click', () => batchZoom.classList.remove('active'));
+  </script>
+
+</body>
+
+</html>
