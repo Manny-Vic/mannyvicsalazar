@@ -72,14 +72,112 @@
       81%, 100% { content: "Video Editor"; }
     }
 
-    /* Education Section */
-    .card-overlay h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
+    /* Achievement Timeline */
+    .timeline-area {
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: auto;
+      gap: 3rem 2rem;
     }
-    .card-overlay p {
-      font-size: 1rem;
+
+    .timeline-center-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #b74b4b;
+      z-index: 1;
+    }
+
+    .timeline-node {
+      position: relative;
+      width: 240px;
+      margin: 0 auto;
+      padding: 1rem;
+      background: #1c1c1c;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .timeline-node:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .timeline-node::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      height: 40px;
+      background: #b74b4b;
+      transform: translateX(-50%);
+    }
+
+    .timeline-node::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: #b74b4b;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px #b74b4b;
+      z-index: 3;
+    }
+
+    .timeline-node.top::before {
+      top: 100%;
+    }
+    .timeline-node.top::after {
+      top: calc(100% + 20px);
+    }
+
+    .timeline-node.bottom::before {
+      bottom: 100%;
+    }
+    .timeline-node.bottom::after {
+      bottom: calc(100% + 20px);
+    }
+
+    .timeline-node img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-year {
+      background: #b74b4b;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
       color: white;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    @media(max-width:768px) {
+      .timeline-area {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .split {
+        flex-direction: column;
+      }
+      .split > div {
+        width: 100% !important;
+        text-align: center;
+        padding: 1rem;
+      }
     }
 
     /* Batchmate fullscreen zoom */
@@ -383,4 +481,5 @@
   </script>
 
 </body>
+
 </html>
