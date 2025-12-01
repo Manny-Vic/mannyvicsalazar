@@ -1,280 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Professional Personal Website</title>
-<link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;600&family=Avenir:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Personal Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;600&family=Avenir:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-html, body { margin:0; padding:0; overflow:hidden; background:#000; font-family:'Helvetica Neue','Avenir',sans-serif; }
-h1,h2,h3,h4,h5,h6{ font-family:'Helvetica Neue','Avenir',sans-serif; font-weight:600; }
+  <style>
+    html, body { margin:0; padding:0; overflow:hidden; background:#000; font-family:'Helvetica Neue','Avenir',sans-serif; }
+    h1,h2,h3,h4,h5,h6 { font-family:'Helvetica Neue','Avenir',sans-serif; font-weight:600; }
 
-section {
-  width:100vw;
-  height:100vh;
-  position:absolute;
-  top:0;
-  left:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  transform:translateX(100%);
-  transition: all 0.8s ease;
-  pointer-events:none;
-}
-section.active { opacity:1; transform:translateX(0); pointer-events:auto; z-index:10; }
+    section {
+      width:100vw;
+      height:100vh;
+      position:absolute;
+      top:0;
+      left:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      transform:translateX(100%);
+      transition: all 0.8s ease;
+      pointer-events:none;
+    }
+    section.active { opacity:1; transform:translateX(0); pointer-events:auto; z-index:10; }
 
-.split { display:flex; width:100%; height:100%; }
-.split > div { width:50%; }
+    .split { display:flex; width:100%; height:100%; }
+    .split > div { width:50%; }
 
-#nav-buttons { position:fixed; bottom:2rem; right:2rem; display:flex; gap:1rem; z-index:50; }
-.nav-btn { padding:12px 28px; background:#b74b4b; color:#fff; font-size:1.2rem; font-weight:600; border-radius:14px; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s, background 0.3s; user-select:none; }
-.nav-btn:hover { transform:scale(1.06); box-shadow:0 8px 15px rgba(183,75,75,0.5); }
+    #nav-buttons { position:fixed; bottom:2rem; right:2rem; display:flex; gap:1rem; z-index:50; }
+    .nav-btn { padding:12px 28px; background:#b74b4b; color:#fff; font-size:1.2rem; font-weight:600; border-radius:14px; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s, background 0.3s; user-select:none; }
+    .nav-btn:hover { transform:scale(1.06); box-shadow:0 8px 15px rgba(183,75,75,0.5); }
 
-header { position:fixed; top:0; left:0; width:100%; display:flex; justify-content:center; z-index:60; background:#000; }
-header nav { display:flex; gap:2rem; padding:1rem 2rem; }
-header nav a { color:#fff; text-decoration:none; font-weight:600; transition:color 0.3s ease, transform 0.3s ease; }
-header nav a.active, header nav a:hover { color:#b74b4b; transform:scale(1.05); }
+    header { position:fixed; top:0; left:0; width:100%; display:flex; justify-content:center; z-index:60; background:#000; }
+    header nav { display:flex; gap:2rem; padding:1rem 2rem; }
+    header nav a { color:#fff; text-decoration:none; font-weight:600; transition:color 0.3s ease, transform 0.3s ease; }
+    header nav a.active, header nav a:hover { color:#b74b4b; transform:scale(1.05); }
 
-.card { border:1px solid transparent; transition:all 0.3s ease; border-radius:12px; overflow:hidden; background:#1c1c1c; display:flex; flex-direction:column; }
-.card:hover { box-shadow:0 10px 25px rgba(0,0,0,0.5); transform:translateY(-5px) scale(1.02); }
+    .card { border:1px solid transparent; transition:all 0.3s ease; border-radius:12px; overflow:hidden; background:#1c1c1c; display:flex; flex-direction:column; min-height:350px; }
+    .card img { width:100%; height:200px; object-fit:cover; object-position:center; }
+    .card-overlay { padding:1.5rem; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between; }
+    .card:hover { box-shadow:0 10px 25px rgba(0,0,0,0.5); transform:translateY(-5px) scale(1.02); }
 
-.family-photo { width:200px; height:200px; border-radius:50%; object-fit:cover; margin-bottom:1rem; transition:transform 0.5s ease; cursor:pointer; }
-.family-photo:hover { transform:scale(1.05); }
+    .family-photo { width:200px; height:200px; border-radius:50%; object-fit:cover; margin-bottom:1rem; transition:transform 0.5s ease; cursor:pointer; }
+    .family-photo:hover { transform:scale(1.05); }
 
-/* Achievement Timeline */
-.timeline-area { width: 100%; max-width: 1200px; position: relative; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: auto; gap: 3rem 2rem; }
-.timeline-center-line { position: absolute; top: 50%; left: 0; width: 100%; height: 4px; background: #b74b4b; z-index: 1; }
-.timeline-node { position: relative; width: 240px; margin: 0 auto; padding: 1rem; background: #1c1c1c; border-radius: 12px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; z-index: 2; }
-.timeline-node:hover { transform: translateY(-6px) scale(1.03); }
-.timeline-node::before { content: ""; position: absolute; left: 50%; width: 4px; height: 40px; background: #b74b4b; transform: translateX(-50%); }
-.timeline-node::after { content: ""; width: 18px; height: 18px; background: #b74b4b; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); box-shadow: 0 0 10px #b74b4b; z-index: 3; }
-.timeline-node.top::before { top: 100%; } .timeline-node.top::after { top: calc(100% + 20px); }
-.timeline-node.bottom::before { bottom: 100%; } .timeline-node.bottom::after { bottom: calc(100% + 20px); }
-.timeline-node img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; }
-.timeline-year { background: #b74b4b; padding: 0.3rem 0.7rem; border-radius: 6px; color: white; font-weight: bold; margin-bottom: 0.5rem; }
+    .typing-words::before {
+      content: "An ";
+      color: white;
+      font-weight: 600;
+    }
+    .typing-words::after {
+      content: "AI Engineer";
+      color: #b74b4b;
+      font-weight: 700;
+      border-right: 3px solid #b74b4b;
+      margin-left: 6px;
+      animation: words 10s infinite, cursorBlink .7s infinite;
+    }
+    @keyframes cursorBlink {
+      0%, 50% { border-color: #b74b4b; }
+      51%, 100% { border-color: transparent; }
+    }
+    @keyframes words {
+      0%, 20% { content: "AI Engineer"; }
+      21%, 40% { content: "Developer"; }
+      41%, 60% { content: "Copywriter"; }
+      61%, 80% { content: "Youtuber"; }
+      81%, 100% { content: "Video Editor"; }
+    }
 
-/* Batchmate fullscreen zoom */
-.batch-zoom-overlay { position: fixed; inset:0; background: rgba(0,0,0,0.95); display: flex; justify-content: center; align-items: center; z-index:100; opacity:0; pointer-events:none; transition: opacity 0.5s ease; }
-.batch-zoom-overlay.active { opacity:1; pointer-events:auto; }
-.batch-zoom-overlay img { max-width:90%; max-height:90%; border-radius:12px; transition: transform 0.5s ease; }
-.batch-zoom-overlay .close-btn { position:absolute; top:2rem; right:2rem; color:#fff; font-size:2rem; cursor:pointer; background:none; border:none; }
+    /* Achievement Timeline */
+    .timeline-area {
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: auto;
+      gap: 3rem 2rem;
+    }
 
-/* Thank You Modal */
-#thankModal { position:fixed; inset:0; background: rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition: opacity 0.5s ease; z-index:200; }
-#thankModal.active { opacity:1; pointer-events:auto; }
-#thankModal .modal-card { background:#1c1c1c; padding:2rem 3rem; border-radius:16px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.5); transform: scale(0.8); transition: transform 0.5s ease; color:white; }
-#thankModal.active .modal-card { transform: scale(1); }
-#thankModal button { margin-top:1.5rem; padding:10px 25px; background:#b74b4b; border:none; border-radius:12px; color:white; font-weight:600; cursor:pointer; transition: transform 0.3s ease; }
-#thankModal button:hover { transform: scale(1.05); }
-</style>
+    .timeline-center-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #b74b4b;
+      z-index: 1;
+    }
+
+    .timeline-node {
+      position: relative;
+      width: 240px;
+      margin: 0 auto;
+      padding: 1rem;
+      background: #1c1c1c;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .timeline-node:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .timeline-node::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      height: 40px;
+      background: #b74b4b;
+      transform: translateX(-50%);
+    }
+
+    .timeline-node::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: #b74b4b;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px #b74b4b;
+      z-index: 3;
+    }
+
+    .timeline-node.top::before {
+      top: 100%;
+    }
+    .timeline-node.top::after {
+      top: calc(100% + 20px);
+    }
+
+    .timeline-node.bottom::before {
+      bottom: 100%;
+    }
+    .timeline-node.bottom::after {
+      bottom: calc(100% + 20px);
+    }
+
+    .timeline-node img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-year {
+      background: #b74b4b;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    @media(max-width:768px) {
+      .timeline-area {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .split {
+        flex-direction: column;
+      }
+      .split > div {
+        width: 100% !important;
+        text-align: center;
+        padding: 1rem;
+      }
+    }
+
+    /* Batchmate fullscreen zoom */
+    .batch-zoom-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index:100;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 0.5s ease;
+    }
+
+    .batch-zoom-overlay.active {
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .batch-zoom-overlay img {
+      max-width:90%;
+      max-height:90%;
+      border-radius:12px;
+      transition: transform 0.5s ease;
+    }
+
+    .batch-zoom-overlay .close-btn {
+      position:absolute;
+      top:2rem;
+      right:2rem;
+      color:#fff;
+      font-size:2rem;
+      cursor:pointer;
+      background:none;
+      border:none;
+    }
+
+    /* Thank You Modal */
+    #thankModal {
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.85);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 0.5s ease;
+      z-index:200;
+    }
+
+    #thankModal.active {
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    #thankModal .modal-card {
+      background:#1c1c1c;
+      padding:2rem 3rem;
+      border-radius:16px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+      transform: scale(0.8);
+      transition: transform 0.5s ease;
+      color:white;
+    }
+
+    #thankModal.active .modal-card {
+      transform: scale(1);
+    }
+
+    #thankModal button {
+      margin-top:1.5rem;
+      padding:10px 25px;
+      background:#b74b4b;
+      border:none;
+      border-radius:12px;
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #thankModal button:hover {
+      transform: scale(1.05);
+    }
+
+  </style>
 </head>
+
 <body>
 
-<header>
-  <nav>
-    <a href="#" data-target="home" class="active">Home</a>
-    <a href="#" data-target="education">Education</a>
-    <a href="#" data-target="achievements">Achievements</a>
-    <a href="#" data-target="family">My Family</a>
-    <a href="#" data-target="batch">Batch Mates</a>
-  </nav>
-</header>
+  <header>
+    <nav>
+      <a href="#" data-target="home" class="active">Home</a>
+      <a href="#" data-target="education">Education</a>
+      <a href="#" data-target="achievements">Achievements</a>
+      <a href="#" data-target="family">My Family</a>
+      <a href="#" data-target="batch">Batch Mates</a>
+    </nav>
+  </header>
 
-<div id="sections">
-  <!-- Home -->
-  <section class="active split" id="home">
-    <div class="flex justify-center items-center">
-      <img src="IMG_5671.jpg" alt="Hero Portrait" class="rounded-full w-80 h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-500">
-    </div>
-    <div class="flex flex-col justify-center items-start px-8">
-      <h1 class="text-5xl text-white mb-2">Manny Vic Salazar</h1>
-      <div class="w-16 h-1 bg-[#b74b4b] mb-4"></div>
-      <h2 class="text-2xl text-white mb-4 typing-words"></h2>
-      <p class="text-white text-lg max-w-lg">
-       A student focusing on mastering software engineering and Artificial Intelligence. Turning ideas into impactful, data driven solutions that solve real world problems and deliver measurable results.
-      </p>
-    </div>
-  </section>
+  <div id="sections">
+    <!-- Home -->
+    <section class="active split" id="home">
+      <div class="flex justify-center items-center">
+        <img src="IMG_5671.jpg" alt="Hero Portrait" class="rounded-full w-80 h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="flex flex-col justify-center items-start px-8">
+        <h1 class="text-5xl text-white mb-2">Manny Vic Salazar</h1>
+        <div class="w-16 h-1 bg-[#b74b4b] mb-4"></div>
+        <h2 class="text-2xl text-white mb-4 typing-words"></h2>
+        <p class="text-white text-lg max-w-lg">
+          A student focusing on mastering software engineering and Artificial Intelligence. Turning ideas into impactful, data driven solutions that solve real world problems and deliver measurable results.
+        </p>
+      </div>
+    </section>
 
-  <!-- Education -->
-  <section class="grid grid-cols-2 grid-rows-2 gap-6 pt-24 px-8" id="education">
-    <div class="card h-60">
-      <img src="uc_logo_green_ext_h150.png" class="w-full h-full object-cover opacity-60">
-      <div class="card-overlay p-4">
-        <h3 class="text-white font-bold">BS Computer Science</h3>
-        <p>University of the Cordilleras, 2025 - Ongoing</p>
+    <!-- Education -->
+    <section class="grid grid-cols-2 grid-rows-2 gap-6 pt-24 px-8" id="education">
+      <div class="card h-60">
+        <img src="uc_logo_green_ext_h150.png" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">BS Computer Science</h3>
+          <p>University of the Cordilleras, 2025 - Ongoing</p>
+        </div>
       </div>
-    </div>
-    <div class="card h-60">
-      <img src="images.png" class="w-full h-full object-cover opacity-60">
-      <div class="card-overlay p-4">
-        <h3 class="text-white font-bold">Senior High School</h3>
-        <p>PHINMA University of Pangasinan, 2023-2025</p>
+      <div class="card h-60">
+        <img src="images.png" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">Senior High School</h3>
+          <p>PHINMA University of Pangasinan, 2023-2025</p>
+        </div>
       </div>
-    </div>
-    <div class="card h-60">
-      <img src="PSAT.jpg" class="w-full h-full object-cover opacity-60">
-      <div class="card-overlay p-4">
-        <h3 class="text-white font-bold">High School</h3>
-        <p>Pangasinan School of Arts and Trades, 2019-2022</p>
+      <div class="card h-60">
+        <img src="PSAT.jpg" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">High School</h3>
+          <p>Pangasinan School of Arts and Trades, 2019-2022</p>
+        </div>
       </div>
-    </div>
-    <div class="card h-60">
-      <img src="biec.jpg" class="w-full h-full object-cover opacity-60">
-      <div class="card-overlay p-4">
-        <h3 class="text-white font-bold">Grade School</h3>
-        <p>Biec Elementary School, 2012-2018</p>
+      <div class="card h-60">
+        <img src="biec.jpg" class="w-full h-full object-cover opacity-60">
+        <div class="card-overlay p-4">
+          <h3 class="text-white font-bold">Grade School</h3>
+          <p>Biec Elementary School, 2012-2018</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Achievements -->
-  <section id="achievements" class="flex justify-center items-center p-8">
-    <div class="timeline-area">
-      <div class="timeline-center-line"></div>
-      <div class="timeline-node top">
-        <div class="timeline-year">2012-2018</div>
-        <img src="IMG_4388.jpg">
-        <h4 class="font-bold text-white">Grade School</h4>
-        <p class="text-white text-sm">Consistent honor student.</p>
+    <!-- Achievements -->
+    <section id="achievements" class="flex justify-center items-center p-8">
+      <div class="timeline-area">
+        <div class="timeline-center-line"></div>
+        <div class="timeline-node top">
+          <div class="timeline-year">2012-2018</div>
+          <img src="IMG_4388.jpg">
+          <h4 class="font-bold text-white">Grade School</h4>
+          <p class="text-white text-sm">Consistent honor student.</p>
+        </div>
+        <div class="timeline-node top">
+          <div class="timeline-year">2019</div>
+          <img src="Screenshot_20251122_142518_YouTube.jpg">
+          <h4 class="font-bold text-white">YouTube</h4>
+          <p class="text-white text-sm">Published my first YouTube video.</p>
+        </div>
+        <div class="timeline-node top">
+          <div class="timeline-year">2023</div>
+          <img src="IMG_6040.png">
+          <h4 class="font-bold text-white">Video Editing Contest</h4>
+          <p class="text-white text-sm">First Place Video Editing.</p>
+        </div>
+        <div class="timeline-node bottom">
+          <div class="timeline-year">2023</div>
+          <img src="cs50.png">
+          <h4 class="font-bold text-white">Certification</h4>
+          <p class="text-white text-sm">CS50: Introduction to Computer Science</p>
+        </div>
+        <div class="timeline-node bottom">
+          <div class="timeline-year">2025 - 2026</div>
+          <img src="cs50ai.png">
+          <h4 class="font-bold text-white">Certification</h4>
+          <p class="text-white text-sm">CS50AI: Introduction to Artificial Intelligence with python</p>
+        </div>
+        <div class="timeline-node bottom">
+          <div class="timeline-year">Future - Ongoing</div>
+          <img src="filters_format(webp).webp">
+          <h4 class="font-bold text-white">Launched Startup</h4>
+          <p class="text-white text-sm">Founded an AI Agency</p>
+        </div>
       </div>
-      <div class="timeline-node top">
-        <div class="timeline-year">2019</div>
-        <img src="Screenshot_20251122_142518_YouTube.jpg">
-        <h4 class="font-bold text-white">YouTube</h4>
-        <p class="text-white text-sm">Published my first YouTube video.</p>
-      </div>
-      <div class="timeline-node top">
-        <div class="timeline-year">2023</div>
-        <img src="IMG_6040.png">
-        <h4 class="font-bold text-white">Video Editing Contest</h4>
-        <p class="text-white text-sm">First Place Video Editing.</p>
-      </div>
-      <div class="timeline-node bottom">
-        <div class="timeline-year">2023</div>
-        <img src="cs50.png">
-        <h4 class="font-bold text-white">Certification</h4>
-        <p class="text-white text-sm">CS50: Introduction to Computer Science</p>
-      </div>
-      <div class="timeline-node bottom">
-        <div class="timeline-year">2025 -  2026</div>
-        <img src="cs50ai.png">
-        <h4 class="font-bold text-white">Certification</h4>
-        <p class="text-white text-sm">CS50AI: Introduction to Artificial Intelligence with python</p>
-      </div>
-      <div class="timeline-node bottom">
-        <div class="timeline-year">Future - Ongoing</div>
-        <img src="filters_format(webp).webp">
-        <h4 class="font-bold text-white">Launched Startup</h4>
-        <p class="text-white text-sm">Founded an AI Agency</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Family -->
-  <section class="flex flex-col justify-center items-center gap-8" id="family">
-    <div class="flex justify-center gap-12 flex-wrap">
-      <div class="flex flex-col items-center">
-        <img src="IMG_0995.jpg" class="family-photo">
-        <h3 class="text-white text-2xl mb-2">Mom</h3>
-        <p class="text-white text-center max-w-xs">My mom is the most caring person in my life, always supporting and guiding me through challenges with love and wisdom.</p>
+    <!-- Family -->
+    <section class="flex flex-col justify-center items-center gap-8" id="family">
+      <div class="flex justify-center gap-12 flex-wrap">
+        <div class="flex flex-col items-center">
+          <img src="IMG_0995.jpg" class="family-photo">
+          <h3 class="text-white text-2xl mb-2">Mom</h3>
+          <p class="text-white text-center max-w-xs">My mom is the most caring person in my life, always supporting and guiding me through challenges with love and wisdom.</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="IMG_6041.jpg" class="family-photo">
+          <h3 class="text-white text-2xl mb-2">Dad</h3>
+          <p class="text-white text-center max-w-xs">Forever thankful for my dad, the man whose strength and kindness uplift me</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <img src="590138317_771306545828833_8180133365514173744_n.jpg" class="family-photo">
+          <h3 class="text-white text-2xl mb-2">Friends</h3>
+          <p class="text-white text-center max-w-xs">my friends and companions. We share laughter, support, and countless memories together. Tovee, Irish, Josh, Sheikiah, Eldref</p>
+        </div>
       </div>
-      <div class="flex flex-col items-center">
-        <img src="IMG_6041.jpg" class="family-photo">
-        <h3 class="text-white text-2xl mb-2">Dad</h3>
-        <p class="text-white text-center max-w-xs">Forever thankful for my dad, the man whose strength and kindness uplift me</p>
+    </section>
+
+    <!-- Batch -->
+    <section class="flex flex-col justify-center items-center" id="batch">
+      <div class="batch-card relative w-3/4 h-3/4 cursor-pointer">
+        <img src="batch10.png" class="w-full h-full object-cover rounded-lg shadow-lg batch-image">
+        <div class="absolute inset-0 flex flex-col justify-end items-start p-6 bg-black bg-opacity-40 rounded-lg">
+          <h2 class="text-white text-3xl mb-2">My Batch Mates</h2>
+          <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment.</p>
+        </div>
       </div>
-      <div class="flex flex-col items-center">
-        <img src="590138317_771306545828833_8180133365514173744_n.jpg" class="family-photo">
-        <h3 class="text-white text-2xl mb-2">Friends</h3>
-        <p class="text-white text-center max-w-xs">my friends and companions. We share laughter, support, and countless memories together. Tovee, Irish, Josh, Sheikiah, Eldref</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Batch -->
-  <section class="flex flex-col justify-center items-center" id="batch">
-    <div class="batch-card relative w-3/4 h-3/4 cursor-pointer">
-      <img src="batch10.png" class="w-full h-full object-cover rounded-lg shadow-lg batch-image">
-      <div class="absolute inset-0 flex flex-col justify-end items-start p-6 bg-black bg-opacity-40 rounded-lg">
-        <h2 class="text-white text-3xl mb-2">My Batch Mates</h2>
-        <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment.</p>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div id="nav-buttons">
-  <div id="backBtn" class="nav-btn hidden">Previous</div>
-  <div id="nextBtn" class="nav-btn">Next</div>
-</div>
-
-<!-- Batch Zoom Overlay -->
-<div class="batch-zoom-overlay" id="batchZoom">
-  <button class="close-btn" id="closeZoom">&times;</button>
-  <img src="" id="zoomImg">
-</div>
-
-<!-- Thank You Modal -->
-<div id="thankModal">
-  <div class="modal-card">
-    <h2 class="text-2xl font-bold">Thank you for viewing my portfolio!</h2>
-    <p class="mt-2">I appreciate your time and interest.</p>
-    <button id="closeThank">Back to Home</button>
+    </section>
   </div>
-</div>
 
-<script>
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('header nav a');
-const backBtn = document.getElementById('backBtn');
-const nextBtn = document.getElementById('nextBtn');
-const thankModal = document.getElementById('thankModal');
-const closeThank = document.getElementById('closeThank');
-let currentIndex = 0;
+  <div id="nav-buttons">
+    <div id="backBtn" class="nav-btn hidden">Previous</div>
+    <div id="nextBtn" class="nav-btn">Next</div>
+  </div>
 
-function showSection(index) {
-  sections.forEach((sec,i)=>{
-    sec.classList.toggle('active', i===index);
-    sec.style.zIndex = i===index?10:0;
-  });
-  navLinks.forEach((link,i)=>link.classList.toggle('active', i===index));
-  backBtn.style.display = index===0?'none':'flex';
-  nextBtn.textContent = index===sections.length-1?'Finish':'Next';
-  currentIndex = index;
-}
+  <!-- Batch Zoom Overlay -->
+  <div class="batch-zoom-overlay" id="batchZoom">
+    <button class="close-btn" id="closeZoom">&times;</button>
+    <img src="" id="zoomImg">
+  </div>
 
-navLinks.forEach((link,i)=>link.addEventListener('click', e=>{ e.preventDefault(); showSection(i); }));
-backBtn.addEventListener('click', ()=>{ if(currentIndex>0) showSection(currentIndex-1); });
-nextBtn.addEventListener('click', ()=>{ 
-  if(currentIndex<sections.length-1) showSection(currentIndex+1); 
-  else thankModal.classList.add('active');
-});
-closeThank.addEventListener('click', ()=>{ 
-  thankModal.classList.remove('active');
-  showSection(0);
-});
+  <!-- Thank You Modal -->
+  <div id="thankModal">
+    <div class="modal-card">
+      <h2 class="text-2xl font-bold">Thank you for viewing my portfolio!</h2>
+      <p class="mt-2">I appreciate your time and interest.</p>
+      <button id="closeThank">Back to Home</button>
+    </div>
+  </div>
 
-showSection(0);
+  <script>
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('header nav a');
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const thankModal = document.getElementById('thankModal');
+    const closeThank = document.getElementById('closeThank');
+    let currentIndex = 0;
 
-// Batchmate zoom
-const batchCard = document.querySelector('.batch-card');
-const batchZoom = document.getElementById('batchZoom');
-const zoomImg = document.getElementById('zoomImg');
-const closeZoom = document.getElementById('closeZoom');
+    function showSection(index) {
+      sections.forEach((sec, i) => {
+        sec.classList.toggle('active', i === index);
+        sec.style.zIndex = i === index ? 10 : 0;
+      });
+      navLinks.forEach((link, i) => link.classList.toggle('active', i === index));
+      backBtn.style.display = index === 0 ? 'none' : 'flex';
+      nextBtn.textContent = index === sections.length - 1 ? 'Finish' : 'Next';
+      currentIndex = index;
+    }
 
-batchCard.addEventListener('click', () => {
-  const img = batchCard.querySelector('img');
-  zoomImg.src = img.src;
-  batchZoom.classList.add('active');
-});
+    navLinks.forEach((link, i) =>
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection(i);
+      })
+    );
+    backBtn.addEventListener('click', () => {
+      if (currentIndex > 0) showSection(currentIndex - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < sections.length - 1) showSection(currentIndex + 1);
+      else thankModal.classList.add('active');
+    });
+    closeThank.addEventListener('click', () => {
+      thankModal.classList.remove('active');
+      showSection(0);
+    });
 
-closeZoom.addEventListener('click', () => batchZoom.classList.remove('active'));
-</script>
+    showSection(0);
+
+    // Batchmate zoom
+    const batchCard = document.querySelector('.batch-card');
+    const batchZoom = document.getElementById('batchZoom');
+    const zoomImg = document.getElementById('zoomImg');
+    const closeZoom = document.getElementById('closeZoom');
+
+    batchCard.addEventListener('click', () => {
+      const img = batchCard.querySelector('img');
+      zoomImg.src = img.src;
+      batchZoom.classList.add('active');
+    });
+    closeZoom.addEventListener('click', () => batchZoom.classList.remove('active'));
+  </script>
 
 </body>
+
 </html>
