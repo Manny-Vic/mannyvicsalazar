@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Personal Website</title>
+  <title>Personal Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;600&family=Avenir:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -217,7 +217,55 @@
       border:none;
     }
 
-   
+    /* Thank You Modal */
+    #thankModal {
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.85);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity 0.5s ease;
+      z-index:200;
+    }
+
+    #thankModal.active {
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    #thankModal .modal-card {
+      background:#1c1c1c;
+      padding:2rem 3rem;
+      border-radius:16px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+      transform: scale(0.8);
+      transition: transform 0.5s ease;
+      color:white;
+    }
+
+    #thankModal.active .modal-card {
+      transform: scale(1);
+    }
+
+    #thankModal button {
+      margin-top:1.5rem;
+      padding:10px 25px;
+      background:#b74b4b;
+      border:none;
+      border-radius:12px;
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #thankModal button:hover {
+      transform: scale(1.05);
+    }
 
   </style>
 </head>
@@ -241,7 +289,7 @@
         <img src="IMG_5671.jpg" alt="Hero Portrait" class="rounded-full w-80 h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-500">
       </div>
       <div class="flex flex-col justify-center items-start px-8">
-        <h1 class="text-5xl text-white mb-2">Hi!, I'm Manny Vic Salazar</h1>
+        <h1 class="text-5xl text-white mb-2">Hi! I'm, Manny Vic Salazar</h1>
         <div class="w-16 h-1 bg-[#b74b4b] mb-4"></div>
         <h2 class="text-2xl text-white mb-4 typing-words"></h2>
         <p class="text-white text-lg max-w-lg">
@@ -256,28 +304,28 @@
         <img src="uc_logo_green_ext_h150.png" class="w-full h-full object-cover opacity-60">
         <div class="card-overlay p-4">
           <h3 class="text-white font-bold">BS Computer Science</h3>
-          <p class="text-white font-sm">University of the Cordilleras, 2025 - Ongoing</p>
+          <p>University of the Cordilleras, 2025 - Ongoing</p>
         </div>
       </div>
       <div class="card h-60">
         <img src="images.png" class="w-full h-full object-cover opacity-60">
         <div class="card-overlay p-4">
           <h3 class="text-white font-bold">Senior High School</h3>
-          <p class="text-white font-sm">PHINMA University of Pangasinan, 2023-2025</p>
+          <p>PHINMA University of Pangasinan, 2023-2025</p>
         </div>
       </div>
       <div class="card h-60">
         <img src="PSAT.jpg" class="w-full h-full object-cover opacity-60">
         <div class="card-overlay p-4">
           <h3 class="text-white font-bold">High School</h3>
-          <p class="text-white font-sm">Pangasinan School of Arts and Trades, 2019-2022</p>
+          <p>Pangasinan School of Arts and Trades, 2019-2022</p>
         </div>
       </div>
       <div class="card h-60">
         <img src="biec.jpg" class="w-full h-full object-cover opacity-60">
         <div class="card-overlay p-4">
           <h3 class="text-white font-bold">Grade School</h3>
-          <p class="text-white font-sm">Biec Elementary School, 2012-2018</p>
+          <p>Biec Elementary School, 2012-2018</p>
         </div>
       </div>
     </section>
@@ -290,13 +338,13 @@
           <div class="timeline-year">2012-2018</div>
           <img src="IMG_4388.jpg">
           <h4 class="font-bold text-white">Grade School</h4>
-          <p class="text-white text-sm">Consistent honor student.</p>
+          <p class="text-white text-sm">Consistent Honor Student.</p>
         </div>
         <div class="timeline-node top">
           <div class="timeline-year">2019</div>
           <img src="Screenshot_20251122_142518_YouTube.jpg">
           <h4 class="font-bold text-white">YouTube</h4>
-          <p class="text-white text-sm">Published my first YouTube video.</p>
+          <p class="text-white text-sm">Published My First YouTube Video.</p>
         </div>
         <div class="timeline-node top">
           <div class="timeline-year">2023</div>
@@ -314,7 +362,7 @@
           <div class="timeline-year">2025 - 2026</div>
           <img src="cs50ai.png">
           <h4 class="font-bold text-white">Certification</h4>
-          <p class="text-white text-sm">CS50AI: Introduction to Artificial Intelligence with python</p>
+          <p class="text-white text-sm">CS50AI: Introduction to Artificial Intelligence with Python</p>
         </div>
         <div class="timeline-node bottom">
           <div class="timeline-year">Future - Ongoing</div>
@@ -352,7 +400,7 @@
         <img src="batch10.png" class="w-full h-full object-cover rounded-lg shadow-lg batch-image">
         <div class="absolute inset-0 flex flex-col justify-end items-start p-6 bg-black bg-opacity-40 rounded-lg">
           <h2 class="text-white text-3xl mb-2">My Batch Mates</h2>
-          <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment. (Click to view full image)</p>
+          <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment. (Click to see the full photo)</p>
         </div>
       </div>
     </section>
@@ -369,13 +417,22 @@
     <img src="" id="zoomImg">
   </div>
 
- 
+  <!-- Thank You Modal -->
+  <div id="thankModal">
+    <div class="modal-card">
+      <h2 class="text-2xl font-bold">Thank you for viewing my portfolio!</h2>
+      <p class="mt-2">I appreciate your time and interest.</p>
+      <button id="closeThank">Back to Home</button>
+    </div>
+  </div>
 
   <script>
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('header nav a');
     const backBtn = document.getElementById('backBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const thankModal = document.getElementById('thankModal');
+    const closeThank = document.getElementById('closeThank');
     let currentIndex = 0;
 
     function showSection(index) {
