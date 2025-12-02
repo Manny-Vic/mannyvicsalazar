@@ -48,7 +48,7 @@
     .family-photo:hover { transform:scale(1.05); }
 
     .typing-words::before {
-      content: "An ";
+      content: "I'm a ";
       color: white;
       font-weight: 600;
     }
@@ -217,55 +217,7 @@
       border:none;
     }
 
-    /* Thank You Modal */
-    #thankModal {
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,0.85);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      opacity:0;
-      pointer-events:none;
-      transition: opacity 0.5s ease;
-      z-index:200;
-    }
-
-    #thankModal.active {
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    #thankModal .modal-card {
-      background:#1c1c1c;
-      padding:2rem 3rem;
-      border-radius:16px;
-      text-align:center;
-      box-shadow:0 10px 30px rgba(0,0,0,0.5);
-      transform: scale(0.8);
-      transition: transform 0.5s ease;
-      color:white;
-    }
-
-    #thankModal.active .modal-card {
-      transform: scale(1);
-    }
-
-    #thankModal button {
-      margin-top:1.5rem;
-      padding:10px 25px;
-      background:#b74b4b;
-      border:none;
-      border-radius:12px;
-      color:white;
-      font-weight:600;
-      cursor:pointer;
-      transition: transform 0.3s ease;
-    }
-
-    #thankModal button:hover {
-      transform: scale(1.05);
-    }
+   
 
   </style>
 </head>
@@ -289,11 +241,11 @@
         <img src="IMG_5671.jpg" alt="Hero Portrait" class="rounded-full w-80 h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-500">
       </div>
       <div class="flex flex-col justify-center items-start px-8">
-        <h1 class="text-5xl text-white mb-2">Manny Vic Salazar</h1>
+        <h1 class="text-5xl text-white mb-2">Hi!, I'm Manny Vic Salazar</h1>
         <div class="w-16 h-1 bg-[#b74b4b] mb-4"></div>
         <h2 class="text-2xl text-white mb-4 typing-words"></h2>
         <p class="text-white text-lg max-w-lg">
-          A student focusing on mastering software engineering and Artificial Intelligence. Turning ideas into impactful, data driven solutions that solve real world problems and deliver measurable results.
+          A student focused on mastering Software Engineering and Artificial Intelligence, dedicated to transforming ideas into impactful, data driven solutions that address real world problems and deliver measurable results
         </p>
       </div>
     </section>
@@ -318,7 +270,7 @@
         <img src="PSAT.jpg" class="w-full h-full object-cover opacity-60">
         <div class="card-overlay p-4">
           <h3 class="text-white font-bold">High School</h3>
-          <p>Pangasinan School of Arts and Trades, 2019-2022</p>
+          <p class="text-white font-sm">Pangasinan School of Arts and Trades, 2019-2022</p>
         </div>
       </div>
       <div class="card h-60">
@@ -379,17 +331,17 @@
         <div class="flex flex-col items-center">
           <img src="IMG_0995.jpg" class="family-photo">
           <h3 class="text-white text-2xl mb-2">Mom</h3>
-          <p class="text-white text-center max-w-xs">My mom is the most caring person in my life, always supporting and guiding me through challenges with love and wisdom.</p>
+          <p class="text-white text-center max-w-xs">My mom Virgie Salazar is the most caring person in my life, always supporting and guiding me through challenges with love and wisdom.</p>
         </div>
         <div class="flex flex-col items-center">
           <img src="IMG_6041.jpg" class="family-photo">
           <h3 class="text-white text-2xl mb-2">Dad</h3>
-          <p class="text-white text-center max-w-xs">Forever thankful for my dad, the man whose strength and kindness uplift me</p>
+          <p class="text-white text-center max-w-xs">Forever thankful for my dad Marlo Salazar, the man whose strength and kindness uplift me</p>
         </div>
         <div class="flex flex-col items-center">
           <img src="590138317_771306545828833_8180133365514173744_n.jpg" class="family-photo">
           <h3 class="text-white text-2xl mb-2">Friends</h3>
-          <p class="text-white text-center max-w-xs">my friends and companions. We share laughter, support, and countless memories together. Tovee, Irish, Josh, Sheikiah, Eldref</p>
+          <p class="text-white text-center max-w-xs">My friends and companions. We share laughter, support, and countless memories together. Tovee, Irish, Josh, Sheikiah, Eldref</p>
         </div>
       </div>
     </section>
@@ -400,7 +352,7 @@
         <img src="batch10.png" class="w-full h-full object-cover rounded-lg shadow-lg batch-image">
         <div class="absolute inset-0 flex flex-col justify-end items-start p-6 bg-black bg-opacity-40 rounded-lg">
           <h2 class="text-white text-3xl mb-2">My Batch Mates</h2>
-          <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment.</p>
+          <p class="text-white text-lg">Batchmates who brought energy, collaboration, and creativity to every project and every moment. (Click to view full image)</p>
         </div>
       </div>
     </section>
@@ -417,22 +369,13 @@
     <img src="" id="zoomImg">
   </div>
 
-  <!-- Thank You Modal -->
-  <div id="thankModal">
-    <div class="modal-card">
-      <h2 class="text-2xl font-bold">Thank you for viewing my portfolio!</h2>
-      <p class="mt-2">I appreciate your time and interest.</p>
-      <button id="closeThank">Back to Home</button>
-    </div>
-  </div>
+ 
 
   <script>
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('header nav a');
     const backBtn = document.getElementById('backBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const thankModal = document.getElementById('thankModal');
-    const closeThank = document.getElementById('closeThank');
     let currentIndex = 0;
 
     function showSection(index) {
